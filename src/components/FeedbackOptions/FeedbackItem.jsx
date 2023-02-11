@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
 import css from './FeedbackList.module.css';
 
-export const FeedbackItem = ({ btn }) => {
+export const FeedbackItem = ({ btn, onLeaveFeedback }) => {
   return (
     <li>
-      <button className={css.btn} type="button">
+      <button
+        className={css.btn}
+        type="button"
+        onClick={() => onLeaveFeedback(btn)}
+      >
         {btn}
       </button>
     </li>

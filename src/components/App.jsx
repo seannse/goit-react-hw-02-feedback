@@ -11,14 +11,10 @@ export class App extends Component {
     bad: 0,
   };
 
-  updateState = ({ target }) => {
-    if (target.nodeName !== 'BUTTON') {
-      return;
-    }
-    const value = target.innerText;
+  updateState = option => {
     this.setState(prevState => {
       return {
-        [value]: prevState[value] + 1,
+        [option]: prevState[option] + 1,
       };
     });
   };
@@ -28,13 +24,13 @@ export class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    const result = this.countTotalFeedback()
+    return this.countTotalFeedback()
       ? Math.round((this.state.good / this.countTotalFeedback()) * 100)
       : 0;
-    return result;
   };
 
   render() {
+    const totalFeedback = this.countTotalFeedback();
     return (
       <div>
         <Section title="Please leave feedback">
@@ -44,12 +40,12 @@ export class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          {this.countTotalFeedback() ? (
+          {totalFeedback ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
-              total={this.countTotalFeedback()}
+              total={totalFeedback}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (

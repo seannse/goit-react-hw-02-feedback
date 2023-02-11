@@ -5,14 +5,13 @@ import { FeedbackItem } from './FeedbackItem';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <ul className={css.list} onClick={onLeaveFeedback}>
+    <ul className={css.list}>
       {options.map(btn => (
-        <FeedbackItem key={btn} btn={btn} />
+        <FeedbackItem key={btn} btn={btn} onLeaveFeedback={onLeaveFeedback} />
       ))}
     </ul>
   );
 };
-
 FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onBtnClick: PropTypes.func.isRequired,
